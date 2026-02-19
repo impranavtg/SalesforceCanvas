@@ -7,6 +7,24 @@ import { MOCK_CANVAS_CONTEXT } from '../mockData.js';
 const router = Router();
 
 /**
+ * GET /canvas
+ * Fallback when accessed directly (not via Salesforce POST).
+ */
+router.get('/', (req, res) => {
+    res.send(`
+    <!DOCTYPE html>
+    <html>
+      <head><title>Canvas Endpoint</title></head>
+      <body style="font-family:sans-serif;padding:40px;text-align:center;color:#333">
+        <h2>Salesforce Canvas Endpoint</h2>
+        <p>This endpoint expects a <strong>POST</strong> request with a <code>signed_request</code> from Salesforce.</p>
+        <p>If you're seeing this, the server is running correctly.</p>
+      </body>
+    </html>
+  `);
+});
+
+/**
  * POST /canvas
  * Salesforce sends the signed_request here when the Canvas app is loaded.
  */

@@ -6,7 +6,7 @@ A full-stack test application for Salesforce Canvas integration.
 
 | Layer       | Tech              | Port   |
 | ----------- | ----------------- | ------ |
-| **Client**  | React + Vite      | `5173` |
+| **Client**  | React + Vite      | `5175` |
 | **Server**  | Express + jsforce | `3001` |
 | **Hosting** | Netlify (both)    | —      |
 

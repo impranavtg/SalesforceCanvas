@@ -10,7 +10,7 @@ const app = express();
 // --------------- Middleware ---------------
 app.use(
     cors({
-        origin: process.env.CLIENT_URL || 'http://localhost:5173',
+        origin: process.env.CLIENT_URL || 'http://localhost:5175',
         credentials: true,
     })
 );
@@ -31,7 +31,7 @@ const PORT = process.env.PORT || 3001;
 app.listen(PORT, () => {
     console.log(`\n🚀 Canvas Server running on http://localhost:${PORT}`);
     console.log(`   Mock mode: ${process.env.MOCK_MODE === 'true' ? 'ENABLED' : 'DISABLED'}`);
-    console.log(`   Client URL: ${process.env.CLIENT_URL || 'http://localhost:5173'}\n`);
+    console.log(`   Client URL: ${process.env.CLIENT_URL || 'http://localhost:5175'}\n`);
 });
 
 export default app;
