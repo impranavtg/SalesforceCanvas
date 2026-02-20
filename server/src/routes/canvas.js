@@ -31,7 +31,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     const { signed_request } = req.body;
 
-    console.log("Signed request: ", signed_request);
+    console.log("Got signed request");
 
     if (!signed_request) {
         return res.status(400).json({ error: 'Missing signed_request in body' });
@@ -43,10 +43,12 @@ router.post('/', (req, res) => {
             process.env.CONSUMER_SECRET
         );
 
+        console.log("Verified signed request");
+
         const token = sessionStore.create(canvasContext);
         const redirectUrl = `${process.env.CLIENT_URL}?token=${token}`;
 
-        console.log("redirect url: ", redirectUrl);
+        console.log("Redirecting now");
 
         // Respond with an HTML page that redirects via JS (Canvas loads in iframe)
         res.send(`
