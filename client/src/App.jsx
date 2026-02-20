@@ -4,7 +4,7 @@ import Dashboard from './components/Dashboard';
 
 export default function App() {
     const { user, loading, login, logout } = useAuth();
-    console.log("useAuth data: ", user, loading, error);
+    console.log("useAuth data: ", user, loading);
 
     if (loading) {
         return (

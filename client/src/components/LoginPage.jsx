@@ -67,17 +67,7 @@ export default function LoginPage({ onLogin, loading: authLoading }) {
                     </button>
                 </form>
 
-                <div className="login-divider">
-                    <span>or</span>
-                </div>
 
-                <button className="btn btn--secondary btn--full" onClick={handleGetMockToken} disabled={loading}>
-                    🧪 Generate Mock Token
-                </button>
-
-                <p className="login-hint">
-                    Mock tokens use simulated Salesforce data — no real org needed.
-                </p>
             </div>
         </div>
     );

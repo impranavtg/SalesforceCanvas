@@ -42,45 +42,7 @@ router.get('/userinfo', (req, res) => {
     });
 });
 
-/**
- * GET /api/accounts
- * Fetches sample Account records from Salesforce via jsforce.
- * Falls back to mock data when in mock mode.
- */
-router.get('/accounts', async (req, res) => {
-    const { client } = req.canvasContext;
 
-    // In mock mode, return mock accounts
-    if (process.env.MOCK_MODE === 'true' || !client.oauthToken || client.oauthToken.startsWith('mock_')) {
-        return res.json({
-            records: MOCK_ACCOUNTS,
-            totalSize: MOCK_ACCOUNTS.length,
-            done: true,
-            source: 'mock',
-        });
-    }
-
-    try {
-        const conn = new jsforce.Connection({
-            instanceUrl: client.instanceUrl,
-            accessToken: client.oauthToken,
-        });
-
-        const result = await conn.query(
-            'SELECT Id, Name, Industry, AnnualRevenue, Website FROM Account ORDER BY Name LIMIT 10'
-        );
-
-        res.json({
-            records: result.records,
-            totalSize: result.totalSize,
-            done: result.done,
-            source: 'salesforce',
-        });
-    } catch (err) {
-        console.error('Salesforce API error:', err.message);
-        res.status(502).json({ error: 'Failed to fetch data from Salesforce', details: err.message });
-    }
-});
 
 /**
  * GET /api/status
