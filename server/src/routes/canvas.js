@@ -50,16 +50,8 @@ router.post('/', (req, res) => {
 
         console.log("Redirecting now");
 
-        // Respond with an HTML page that redirects via JS (Canvas loads in iframe)
-        res.send(`
-      <!DOCTYPE html>
-      <html>
-        <head><title>Loading Canvas App...</title></head>
-        <body>
-          <script>window.top.location.href = "${redirectUrl}";</script>
-        </body>
-      </html>
-    `);
+        // Server-side redirect — no client-side JS needed
+        res.redirect(redirectUrl);
     } catch (err) {
         console.error('Canvas signed request verification failed:', err.message);
         res.status(401).json({ error: 'Invalid signed request' });
